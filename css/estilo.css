@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*=================================================ALL========================================================*/
+body {
+  background: black;
+  font-family: "Bungee Spice", sans-serif;
+  font-size: 25px;
+  background-image: linear-gradient(
+    90deg,
+    #ff9900 0%,
+    #008be7 40%,
+    #001c77 100%
+  );
+  background-position: top center;
+  background-size: 100% auto;
+}
+
+/*===================================================MAIN======================================================*/
+main {
+  margin: 32px auto;
+  display: flex;
+  /*display: grid; ao inves de flex e flex direction */
+  flex-direction: column;
+  gap: 24px;
+}
+
+main section {
+  animation: fromBottom 0.7s backwards;
+}
+
+main section:nth-child(1) {
+  animation-delay: 0;
+}
+
+main section:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+main section:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+main section:nth-child(4) {
+  animation-delay: 0.16s;
+}
+
+main section:nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+main section:nth-child(6) {
+  animation-delay: 0.64s;
+}
+
+main section:nth-child(7) {
+  animation-delay: 0.128s;
+}
+
+/*================================================SECTION======================================================*/
+section {
+  color: white;
+  background-image: linear-gradient(
+    90deg,
+    #cc8800 0%,
+    #dd5601 50%,
+    #cc1901 100%
+  );
+  padding-top: 4px;
+  border-radius: 10px;
+  margin-top: 30px;
+  padding-bottom: 4px;
+}
+
+section div {
+  background-color: #2a2634;
+  padding: 24px 32px 32px 32px;
+  border-radius: 8px;
+  margin: 8px;
+}
+
+section ul {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  gap: 16px;
+}
+
+section ul li {
+  transition: transform 0.3s;
+}
+
+section ul li:hover {
+  transform: scale(1.2);
+}
+
+/*==================================================LISTS=======================================================*/
+ul {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+}
+
+li {
+  margin: auto;
+  padding: 10px;
+}
+
+p,
+h2 {
+  text-align: center;
+}
+
+to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/*===================================================IMG=======================================================*/
+.round {
+  border-radius: 50%;
+}
