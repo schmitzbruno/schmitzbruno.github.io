@@ -17,14 +17,15 @@
     </style>
 
     <script>
-      function playAudio(audioId) {
-        var audio = document.getElementById(audioId);
-        audio.play();
-      }
-
-      function pauseAudio(audioId) {
-        var audio = document.getElementById(audioId);
-        audio.pause();
+      function playAudioOnClick(audioId) {
+      var audio = document.getElementById(audioId);
+      // Pausa todos os áudios antes de tocar o novo
+      var allAudios = document.querySelectorAll('audio');
+      allAudios.forEach(function (audioElement) {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+      });
+      audio.play();
       }
     </script>
   </head>
@@ -40,8 +41,7 @@
                 width="250"
                 height="250"
                 src="/img/chegada.svg"
-                onmouseover="playAudio('audio_chegada')"
-                onmouseout="pauseAudio('audio_chegada')"
+                onclick="playAudioOnClick('audio_chegada')"
               />
               <p>Chegada!</p>
             </li>
@@ -51,8 +51,7 @@
                 width="250"
                 height="250"
                 src="/img/roda.svg"
-                onmouseover="playAudio('audio_roda')"
-                onmouseout="pauseAudio('audio_roda')"
+                onclick="playAudioOnClick('audio_roda')"
               />
               <p>Roda</p>
             </li>
@@ -62,8 +61,7 @@
                 width="250"
                 height="250"
                 src="/img/brincadeira.svg"
-                onmouseover="playAudio('audio_brincadeira')"
-                onmouseout="pauseAudio('audio_brincadeira')"
+                onclick="playAudioOnClick('audio_brincadeira')"
               />
               <p>Brincadeiras</p>
             </li>
@@ -73,8 +71,7 @@
                 width="250"
                 height="250"
                 src="/img/parque.svg"
-                onmouseover="playAudio('audio_parque')"
-                onmouseout="pauseAudio('audio_parque')"
+                onclick="playAudioOnClick('audio_parque')"
               />
               <p>Parque</p>
             </li>
@@ -84,8 +81,7 @@
                 width="250"
                 height="250"
                 src="/img/atividade.svg"
-                onmouseover="playAudio('audio_atividade')"
-                onmouseout="pauseAudio('audio_atividade')"
+                onclick="playAudioOnClick('audio_atividade')"
               />
               <p>Atividade</p>
             </li>
@@ -95,8 +91,7 @@
                 width="250"
                 height="250"
                 src="/img/higiene.svg"
-                onmouseover="playAudio('audio_higiene')"
-                onmouseout="pauseAudio('audio_higiene')"
+                onclick="playAudioOnClick('audio_higiene')"
               />
               <p>Higiene</p>
             </li>
@@ -106,8 +101,7 @@
                 width="250"
                 height="250"
                 src="/img/lanche.png"
-                onmouseover="playAudio('audio_lanche')"
-                onmouseout="pauseAudio('audio_lanche')"
+                onclick="playAudioOnClick('audio_lanche')"
               />
               <p>Hora do Lanche!</p>
             </li>
@@ -117,8 +111,7 @@
                 width="250"
                 height="250"
                 src="/img/leitura.svg"
-                onmouseover="playAudio('audio_leitura')"
-                onmouseout="pauseAudio('audio_leitura')"
+                onclick="playAudioOnClick('audio_leitura')"
               />
               <p>Leitura</p>
             </li>
@@ -128,8 +121,7 @@
                 width="250"
                 height="250"
                 src="/img/educaçao fisica.svg"
-                onmouseover="playAudio('audio_educacao_fisica')"
-                onmouseout="pauseAudio('audio_educacao_fisica')"
+                onclick="playAudioOnClick('audio_educacao_fisica')"
               />
               <p>Educação Física</p>
             </li>
@@ -139,8 +131,7 @@
                 width="250"
                 height="250"
                 src="/img/musicalizaçao.svg"
-                onmouseover="playAudio('audio_musicalizacao')"
-                onmouseout="pauseAudio('audio_musicalizacao')"
+                onclick="playAudioOnClick('audio_musicalizacao')"
               />
               <p>Musicalização</p>
             </li>
@@ -150,9 +141,7 @@
                 width="250"
                 height="250"
                 src="/img/saída.png"
-                onmouseover="playAudio('audio_saida')"
-                onmouseout="pauseAudio('audio_saida')"
-              />
+             onclick="playAudioOnClick('audio_saida')" />
               <p>Saída</p>
             </li>
           </ul>
