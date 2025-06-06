@@ -124,3 +124,17 @@ to {
 .round {
   border-radius: 50%;
 }
+img:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+  transition: transform 0.1s;
+}
+
+section ul li:hover {
+  transform: scale(1.05);
+}
+
+img:focus {
+  outline: 3px solid #ff9900;
+  border-radius: 8px;
+}

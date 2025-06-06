@@ -1,177 +1,114 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible"="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/css/estilo.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet"/>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible"="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Quadro de Rotina para Autistas</title>
+  <link rel="stylesheet" href="/schmitzbruno.github.io/css/estilo.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet" />
 
-    <style>
-      img {
-        cursor: pointer;
-      }
-    </style>
+  <title>Quadro de Rotina para Autistas</title>
 
-    <script>
-      function playAudio(audioId) {
-        var audio = document.getElementById(audioId);
-        audio.play();
-      }
+  <style>
+    img {
+      cursor: pointer;
+    }
+  </style>
 
-      function pauseAudio(audioId) {
-        var audio = document.getElementById(audioId);
-        audio.pause();
-      }
-    </script>
-  </head>
+  <script>
+    function playAudioOnClick(audioId) {
+      var audio = document.getElementById(audioId);
+      // Pausa todos os áudios antes de tocar o novo
+      var allAudios = document.querySelectorAll('audio');
+      allAudios.forEach(function (audioElement) {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+      });
+      audio.play();
+    }
+  </script>
+</head>
 
-  <body>
-    <main>
-      <section>
-        <div>
-          <h2>O que vamos fazer hoje?</h2>
-          <ul>
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/chegada.svg"
-                onmouseover="playAudio('audio_chegada')"
-                onmouseout="pauseAudio('audio_chegada')"
-              />
-              <p>Chegada!</p>
-            </li>
+<body>
+  <main>
+    <section>
+      <div>
+        <h2>O que vamos fazer hoje?</h2>
+        <ul>
+          <li>
+            <img width="250" height="250" src="/schmitzbruno.github.io/img/chegada.svg" onclick="playAudioOnClick('audio_chegada')" />
+            <p>Chegada!</p>
+          </li>
 
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/roda.svg"
-                onmouseover="playAudio('audio_roda')"
-                onmouseout="pauseAudio('audio_roda')"
-              />
-              <p>Roda</p>
-            </li>
+          <li>
+            <img width="250" height="250" src="/schmitzbruno.github.io/img/roda.svg" onclick="playAudioOnClick('audio_roda')" />
+            <p>Roda</p>
+          </li>
 
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/brincadeira.svg"
-                onmouseover="playAudio('audio_brincadeira')"
-                onmouseout="pauseAudio('audio_brincadeira')"
-              />
-              <p>Brincadeiras</p>
-            </li>
+          <li>
+            <img width="250" height="250" src="/schmitzbruno.github.io/img/brincadeira.svg" onclick="playAudioOnClick('audio_brincadeira')" />
+            <p>Brincadeiras</p>
+          </li>
 
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/parque.svg"
-                onmouseover="playAudio('audio_parque')"
-                onmouseout="pauseAudio('audio_parque')"
-              />
-              <p>Parque</p>
-            </li>
+          <li>
+            <img width="250" height="250" src="/schmitzbruno.github.io/img/parque.svg" onclick="playAudioOnClick('audio_parque')" />
+            <p>Parque</p>
+          </li>
 
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/atividade.svg"
-                onmouseover="playAudio('audio_atividade')"
-                onmouseout="pauseAudio('audio_atividade')"
-              />
-              <p>Atividade</p>
-            </li>
+          <li>
+            <img width="250" height="250" src="/schmitzbruno.github.io/img/atividade.svg" onclick="playAudioOnClick('audio_atividade')" />
+            <p>Atividade</p>
+          </li>
 
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/higiene.svg"
-                onmouseover="playAudio('audio_higiene')"
-                onmouseout="pauseAudio('audio_higiene')"
-              />
-              <p>Higiene</p>
-            </li>
+          <li>
+            <img width="250" height="250" src="/schmitzbruno.github.io/img/higiene.svg" onclick="playAudioOnClick('audio_higiene')" />
+            <p>Higiene</p>
+          </li>
 
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/lanche.png"
-                onmouseover="playAudio('audio_lanche')"
-                onmouseout="pauseAudio('audio_lanche')"
-              />
-              <p>Hora do Lanche!</p>
-            </li>
+          <li>
+            <img width="250" height="250" src="/schmitzbruno.github.io/img/lanche.png" onclick="playAudioOnClick('audio_lanche')" />
+            <p>Hora do Lanche!</p>
+          </li>
 
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/leitura.svg"
-                onmouseover="playAudio('audio_leitura')"
-                onmouseout="pauseAudio('audio_leitura')"
-              />
-              <p>Leitura</p>
-            </li>
+          <li>
+            <img width="250" height="250" src="/schmitzbruno.github.io/img/leitura.svg" onclick="playAudioOnClick('audio_leitura')" />
+            <p>Leitura</p>
+          </li>
 
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/educaçao fisica.svg"
-                onmouseover="playAudio('audio_educacao_fisica')"
-                onmouseout="pauseAudio('audio_educacao_fisica')"
-              />
-              <p>Educação Física</p>
-            </li>
+          <li>
+            <img width="250" height="250" src="/schmitzbruno.github.io/img/educaçao fisica.svg" onclick="playAudioOnClick('audio_educacao_fisica')" />
+            <p>Educação Física</p>
+          </li>
 
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/musicalizaçao.svg"
-                onmouseover="playAudio('audio_musicalizacao')"
-                onmouseout="pauseAudio('audio_musicalizacao')"
-              />
-              <p>Musicalização</p>
-            </li>
+          <li>
+            <img width="250" height="250" src="/schmitzbruno.github.io/img/musicalizaçao.svg" onclick="playAudioOnClick('audio_musicalizacao')" />
+            <p>Musicalização</p>
+          </li>
 
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/saída.png"
-                onmouseover="playAudio('audio_saida')"
-                onmouseout="pauseAudio('audio_saida')"
-              />
-              <p>Saída</p>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <div class="audio">
-        <!-- Adicione elementos de áudio para cada atividade -->
-        <audio id="audio_atividade" src="/audios/atividade.mp3"></audio>
-        <audio id="audio_brincadeira" src="/audios/brincadeira.mp3"></audio>
-        <audio id="audio_chegada" src="/audios/chegada.mp3"></audio>
-        <audio id="audio_educacao_fisica" src="/audios/educação_física.mp3"></audio>
-        <audio id="audio_higiene" src="/audios/higiene.mp3"></audio>
-        <audio id="audio_lanche" src="/audios/lanche.mp3"></audio>
-        <audio id="audio_leitura" src="/audios/leitura.mp3"></audio>
-        <audio id="audio_musicalizacao" src="/audios/musicalizaçao.mp3"></audio>
-        <audio id="audio_parque" src="/audios/parque.mp3"></audio>
-        <audio id="audio_roda" src="/audios/roda.mp3"></audio>
-        <audio id="audio_saida" src="/audios/saida.mp3"></audio>
+          <li>
+            <img width="250" height="250" src="/schmitzbruno.github.io/img/saída.png" onclick="playAudioOnClick('audio_saida')" />
+            <p>Saída</p>
+          </li>
+        </ul>
       </div>
-    </main>
-  </body>
+    </section>
+    <div class="audio">
+      <!-- Adicione elementos de áudio para cada atividade -->
+      <audio id="audio_atividade" src="/schmitzbruno.github.io/audios/atividade.mp3"></audio>
+      <audio id="audio_brincadeira" src="/schmitzbruno.github.io/audios/brincadeira.mp3"></audio>
+      <audio id="audio_chegada" src="/schmitzbruno.github.io/audios/chegada.mp3"></audio>
+      <audio id="audio_educacao_fisica" src="/schmitzbruno.github.io/audios/educação_física.mp3"></audio>
+      <audio id="audio_higiene" src="/schmitzbruno.github.io/audios/higiene.mp3"></audio>
+      <audio id="audio_lanche" src="/schmitzbruno.github.io/audios/lanche.mp3"></audio>
+      <audio id="audio_leitura" src="/schmitzbruno.github.io/audios/leitura.mp3"></audio>
+      <audio id="audio_musicalizacao" src="/schmitzbruno.github.io/audios/musicalizaçao.mp3"></audio>
+      <audio id="audio_parque" src="/schmitzbruno.github.io/audios/parque.mp3"></audio>
+      <audio id="audio_roda" src="/schmitzbruno.github.io/audios/roda.mp3"></audio>
+      <audio id="audio_saida" src="/schmitzbruno.github.io/audios/saida.mp3"></audio>
+    </div>
+  </main>
+</body>
+
 </html>
