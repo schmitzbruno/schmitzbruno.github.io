@@ -1,5 +1,7 @@
 Quadro de Rotinas para Crianças com Autismo.
 
+https://schmitzbruno.github.io/
+
 Projeto desenvolvido para auxiliar educadores na organização de atividades lúdicas para crianças com espectro autista, de forma visual, interativa e acessível.
 
 ✨ Funcionalidades
@@ -14,15 +16,25 @@ Design acessível: Pictogramas claros e interface amigável
 🎯 Atividades Incluídas
 
 🏃 Chegada - Boas vindas e início da rotina
+
 🔄 Roda - Momento de conversa em grupo
+
 🎮 Brincadeiras - Atividades lúdicas
+
 🌳 Parque - Tempo ao ar livre
+
 📝 Atividade - Tarefas dirigidas
+
 🧼 Higiene - Cuidados pessoais
+
 🍎 Lanche - Hora da alimentação
+
 📚 Leitura - Momento da história
+
 ⚽ Educação Física - Atividades físicas
+
 🎵 Musicalização - Atividades musicais
+
 👋 Saída - Despedida e fim da rotina
 
 🛠️ Tecnologias Utilizadas
