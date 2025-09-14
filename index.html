@@ -1,166 +1,281 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible"="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/css/estilo.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet"/>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Quadro de Rotina para Autistas</title>
+  <link rel="stylesheet" href="/css/estilo.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet" />
 
-    <style>
-      img {
-        cursor: pointer;
+  <title data-lang="page-title">Quadro de Rotina para Autistas</title>
+
+  <script>
+    const translations = {
+      pt: {
+        "page-title": "Quadro de Rotina para Autistas",
+        "main-title": "O que vamos fazer hoje?",
+        "header-title": "Quadro de Tarefas para Autistas",
+        "chegada": "Chegada!",
+        "roda": "Roda",
+        "brincadeira": "Brincadeiras",
+        "parque": "Parque",
+        "atividade": "Atividade",
+        "higiene": "Higiene",
+        "lanche": "Hora do Lanche!",
+        "leitura": "Leitura",
+        "educacao-fisica": "Educação Física",
+        "musicalizacao": "Musicalização",
+        "saida": "Saída"
+      },
+      es: {
+        "page-title": "Cuadro de Rutina para Autistas",
+        "main-title": "¿Qué vamos a hacer hoy?",
+        "header-title": "Cuadro de Tareas para Autistas",
+        "chegada": "¡Llegada!",
+        "roda": "Rueda",
+        "brincadeira": "Juegos",
+        "parque": "Parque",
+        "atividade": "Actividad",
+        "higiene": "Higiene",
+        "lanche": "¡Hora de la merienda!",
+        "leitura": "Lectura",
+        "educacao-fisica": "Educación Física",
+        "musicalizacao": "Musicalización",
+        "saida": "Salida"
       }
-    </style>
+    };
 
-    <script>
-      function playAudioOnClick(audioId) {
-      var audio = document.getElementById(audioId);
-      // Pausa todos os áudios antes de tocar o novo
+    function getDefaultLanguage() {
+      const browserLang = navigator.language || navigator.userLanguage;
+      if (browserLang.startsWith('es')) {
+        return 'es';
+      }
+      return 'pt';
+    }
+
+    let currentLanguage = localStorage.getItem('preferred-language') || 'pt';;
+    let isDropdownOpen = false;
+
+    const languageData = {
+      pt: { flag: '<img src="/img/bandeira_brasil_20x15.png" alt="PT" class="flag-img">' },
+      es: { flag: '<img src="/img/bandeira_espanha_20x15.png" alt="ES" class="flag-img">' }
+    };
+
+    function toggleLanguageDropdown() {
+      isDropdownOpen = !isDropdownOpen;
+      const toggle = document.querySelector('.language-toggle');
+      const dropdown = document.querySelector('.language-dropdown');
+
+      if (isDropdownOpen) {
+        toggle.classList.add('open');
+        dropdown.classList.add('show');
+      } else {
+        toggle.classList.remove('open');
+        dropdown.classList.remove('show');
+      }
+    }
+
+    document.addEventListener('click', function (event) {
+      const selector = document.querySelector('.language-selector');
+      if (selector && !selector.contains(event.target) && isDropdownOpen) {
+        toggleLanguageDropdown();
+      }
+    });
+
+    function updateLanguageButton() {
+      const currentFlag = document.querySelector('.current-flag');
+
+      if (currentFlag) {
+        currentFlag.innerHTML = languageData[currentLanguage].flag;
+      }
+    }
+
+    function changeLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem('preferred-language', lang);
+
+      document.documentElement.lang = lang === 'pt' ? 'pt-br' : 'es';
+
+      const elements = document.querySelectorAll('[data-lang]');
+      elements.forEach(element => {
+        const key = element.getAttribute('data-lang');
+        if (translations[lang] && translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll('.language-option').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      const activeOption = document.querySelector('[data-lang-option="' + lang + '"]');
+      if (activeOption) {
+        activeOption.classList.add('active');
+      }
+
+      updateLanguageButton();
+
+      if (isDropdownOpen) {
+        toggleLanguageDropdown();
+      }
+    }
+
+    // Função para tocar áudio 
+    function playAudioOnClick(audioId) {
       var allAudios = document.querySelectorAll('audio');
       allAudios.forEach(function (audioElement) {
         audioElement.pause();
         audioElement.currentTime = 0;
       });
-      audio.play();
+
+      // Toca o áudio no idioma atual
+      var audio = document.getElementById(audioId + '_' + currentLanguage);
+      if (audio) {
+        audio.play().catch(function (error) {
+          console.log('Erro ao tocar áudio:', error);
+        });
+      } else {
+        var fallbackAudio = document.getElementById(audioId + '_pt');
+        if (fallbackAudio) {
+          fallbackAudio.play().catch(function (error) {
+            console.log('Erro ao tocar áudio fallback:', error);
+          });
+        }
       }
-    </script>
-  </head>
+    }
 
-  <body>
-    <main>
-      <section>
-        <div>
-          <h2>O que vamos fazer hoje?</h2>
-          <ul>
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/chegada.svg"
-                onclick="playAudioOnClick('audio_chegada')"
-              />
-              <p>Chegada!</p>
-            </li>
+    document.addEventListener('DOMContentLoaded', function () {
+      changeLanguage(currentLanguage);
+    });
+  </script>
+</head>
 
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/roda.svg"
-                onclick="playAudioOnClick('audio_roda')"
-              />
-              <p>Roda</p>
-            </li>
+<body>
+  <!-- Seletor de Idioma -->
+  <div class="language-selector">
+    <div class="language-toggle" onclick="toggleLanguageDropdown()">
+      <span class="current-flag">
+        <img src="/img/bandeira_brasil_20x15.png" alt="PT" class="flag-img">
+      </span>
+      <span class="dropdown-arrow">▼</span>
+    </div>
 
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/brincadeira.svg"
-                onclick="playAudioOnClick('audio_brincadeira')"
-              />
-              <p>Brincadeiras</p>
-            </li>
-
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/parque.svg"
-                onclick="playAudioOnClick('audio_parque')"
-              />
-              <p>Parque</p>
-            </li>
-
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/atividade.svg"
-                onclick="playAudioOnClick('audio_atividade')"
-              />
-              <p>Atividade</p>
-            </li>
-
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/higiene.svg"
-                onclick="playAudioOnClick('audio_higiene')"
-              />
-              <p>Higiene</p>
-            </li>
-
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/lanche.png"
-                onclick="playAudioOnClick('audio_lanche')"
-              />
-              <p>Hora do Lanche!</p>
-            </li>
-
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/leitura.svg"
-                onclick="playAudioOnClick('audio_leitura')"
-              />
-              <p>Leitura</p>
-            </li>
-
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/educaçao fisica.svg"
-                onclick="playAudioOnClick('audio_educacao_fisica')"
-              />
-              <p>Educação Física</p>
-            </li>
-
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/musicalizaçao.svg"
-                onclick="playAudioOnClick('audio_musicalizacao')"
-              />
-              <p>Musicalização</p>
-            </li>
-
-            <li>
-              <img
-                width="250"
-                height="250"
-                src="/img/saída.png"
-             onclick="playAudioOnClick('audio_saida')" />
-              <p>Saída</p>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <div class="audio">
-        <!-- Adicione elementos de áudio para cada atividade -->
-        <audio id="audio_atividade" src="/audios/atividade.mp3"></audio>
-        <audio id="audio_brincadeira" src="/audios/brincadeira.mp3"></audio>
-        <audio id="audio_chegada" src="/audios/chegada.mp3"></audio>
-        <audio id="audio_educacao_fisica" src="/audios/educação_física.mp3"></audio>
-        <audio id="audio_higiene" src="/audios/higiene.mp3"></audio>
-        <audio id="audio_lanche" src="/audios/lanche.mp3"></audio>
-        <audio id="audio_leitura" src="/audios/leitura.mp3"></audio>
-        <audio id="audio_musicalizacao" src="/audios/musicalizaçao.mp3"></audio>
-        <audio id="audio_parque" src="/audios/parque.mp3"></audio>
-        <audio id="audio_roda" src="/audios/roda.mp3"></audio>
-        <audio id="audio_saida" src="/audios/saida.mp3"></audio>
+    <div class="language-dropdown">
+      <div class="language-option active" data-lang-option="pt" onclick="changeLanguage('pt')">
+        <span class="flag-icon">
+          <img src="/img/bandeira_brasil_20x15.png" alt="PT" class="flag-img">
+        </span>
       </div>
-    </main>
-  </body>
+      <div class="language-option" data-lang-option="es" onclick="changeLanguage('es')">
+        <span class="flag-icon">
+          <img src="/img/bandeira_espanha_20x15.png" alt="ES" class="flag-img">
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="simple-header">
+    <h1 data-lang="header-title">Quadro de Tarefas para Autistas</h1>
+    <div class="images-tea">
+      <img src="/img/tea scarf.png" alt="Laço autismo">
+    </div>
+  </div>
+
+  <main>
+    <section>
+      <div>
+        <h2 data-lang="main-title">O que vamos fazer hoje?</h2>
+        <ul>
+          <li>
+            <img width="250" height="250" src="/img/chegada.svg" onclick="playAudioOnClick('audio_chegada')" />
+            <p data-lang="chegada">Chegada!</p>
+          </li>
+
+          <li>
+            <img width="250" height="250" src="/img/roda.svg" onclick="playAudioOnClick('audio_roda')" />
+            <p data-lang="roda">Roda</p>
+          </li>
+
+          <li>
+            <img width="250" height="250" src="/img/brincadeira.svg" onclick="playAudioOnClick('audio_brincadeira')" />
+            <p data-lang="brincadeira">Brincadeiras</p>
+          </li>
+
+          <li>
+            <img width="250" height="250" src="/img/parque.svg" onclick="playAudioOnClick('audio_parque')" />
+            <p data-lang="parque">Parque</p>
+          </li>
+
+          <li>
+            <img width="250" height="250" src="/img/atividade.svg" onclick="playAudioOnClick('audio_atividade')" />
+            <p data-lang="atividade">Atividade</p>
+          </li>
+
+          <li>
+            <img width="250" height="250" src="/img/higiene.svg" onclick="playAudioOnClick('audio_higiene')" />
+            <p data-lang="higiene">Higiene</p>
+          </li>
+
+          <li>
+            <img width="250" height="250" src="/img/lanche.png" onclick="playAudioOnClick('audio_lanche')" />
+            <p data-lang="lanche">Hora do Lanche!</p>
+          </li>
+
+          <li>
+            <img width="250" height="250" src="/img/leitura.svg" onclick="playAudioOnClick('audio_leitura')" />
+            <p data-lang="leitura">Leitura</p>
+          </li>
+
+          <li>
+            <img width="250" height="250" src="/img/educaçao fisica.svg" onclick="playAudioOnClick('audio_educacao_fisica')" />
+            <p data-lang="educacao-fisica">Educação Física</p>
+          </li>
+
+          <li>
+            <img width="250" height="250" src="/img/musicalizaçao.svg" onclick="playAudioOnClick('audio_musicalizacao')" />
+            <p data-lang="musicalizacao">Musicalização</p>
+          </li>
+
+          <li>
+            <img width="250" height="250" src="/img/saída.png" onclick="playAudioOnClick('audio_saida')" />
+            <p data-lang="saida">Saída</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="audio">
+      <!-- Áudios em Português -->
+      <audio id="audio_atividade_pt" src="/audios/atividade.mp3"></audio>
+      <audio id="audio_brincadeira_pt" src="/audios/brincadeira.mp3"></audio>
+      <audio id="audio_chegada_pt" src="/audios/chegada.mp3"></audio>
+      <audio id="audio_educacao_fisica_pt" src="/audios/educação_física.mp3"></audio>
+      <audio id="audio_higiene_pt" src="/audios/higiene.mp3"></audio>
+      <audio id="audio_lanche_pt" src="/audios/lanche.mp3"></audio>
+      <audio id="audio_leitura_pt" src="/audios/leitura.mp3"></audio>
+      <audio id="audio_musicalizacao_pt" src="/audios/musicalizaçao.mp3"></audio>
+      <audio id="audio_parque_pt" src="/audios/parque.mp3"></audio>
+      <audio id="audio_roda_pt" src="/audios/roda.mp3"></audio>
+      <audio id="audio_saida_pt" src="/audios/saida.mp3"></audio>
+
+      <!-- Áudios em Espanhol -->
+      <audio id="audio_atividade_es" src="/audios/ES - Atividade.mp3"></audio>
+      <audio id="audio_brincadeira_es" src="/audios/ES -  Vamos brincar.mp3"></audio>
+      <audio id="audio_chegada_es" src="/audios/ES - Chegada.mp3"></audio>
+      <audio id="audio_educacao_fisica_es" src="/audios/ES - Educaçao fisica.mp3"></audio>
+      <audio id="audio_higiene_es" src="/audios/ES - Higiene.mp3"></audio>
+      <audio id="audio_lanche_es" src="/audios/ES - Lanche.mp3"></audio>
+      <audio id="audio_leitura_es" src="/audios/ES - Leitura.mp3"></audio>
+      <audio id="audio_musicalizacao_es" src="/audios/ES - Musica.mp3"></audio>
+      <audio id="audio_parque_es" src="/audios/ES - Parque.mp3"></audio>
+      <audio id="audio_roda_es" src="/audios/ES - Roda.mp3"></audio>
+      <audio id="audio_saida_es" src="/audios/ES - Saida.mp3"></audio>
+    </div>
+  </main>
+  <footer>
+    <p>2025© <a href="https://instagram.com/schmitzbrunobm" target="_blank">@schmitzbrunobm</a> - Bruno Schmitz</p>
+  </footer>
+</body>
+
 </html>
