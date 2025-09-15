@@ -56,6 +56,7 @@ As preferências de idioma são salvas automaticamente
 🌍 Idiomas Suportados
 
 🇧🇷 Português (padrão)
+
 🇪🇸 Espanhol
 
 📁 Estrutura do Projeto
