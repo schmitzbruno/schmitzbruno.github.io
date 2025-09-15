@@ -1,4 +1,4 @@
-Quadro de Rotinas para Crianças com Autismo.
+Quadro de Rotinas para Crianças com Transtorno do Espectro Austista (TEA).
 
 https://schmitzbruno.github.io/
 
