@@ -58,5 +58,3 @@ As preferências de idioma são salvas automaticamente
 🇧🇷 Português (padrão)
 
 🇪🇸 Espanhol
-
-📁 Estrutura do Projeto
